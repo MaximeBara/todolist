@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="col-6">To do :</h2>
+        <h2 class="col-6">Done :</h2>
+        <ul class="col-6">
+            <ng-container *ngFor="let todo of todoList">
+                <ng-container *ngIf=!todo.state>
+                    <li class="row">
+                        <input class="col-8" [(ngModel)]="todo.task" (keydown.enter)="update(todo)">
+                        <button class="col-2 btn btn-success" (click)="changeState(todo)">Done !</button>
+                        <button class="col-2 btn btn-danger" (click)="delete(todo.id)">Delete</button>
+                    </li>
+                </ng-container>
+            </ng-container>
+        </ul>
+        <ul class="col-6">
+            <ng-container *ngFor="let todo of todoList">
+                <ng-container *ngIf=todo.state>
+                    <li>
+                        <input class="col-8" [(ngModel)]="todo.task" (keydown.enter)="update(todo)">
+                        <button class="col-2 btn btn-warning" (click)="changeState(todo)">Todo !</button>
+                        <button class="col-2 btn btn-danger" (click)="delete(todo.id)">Delete</button>
+                    </li>
+                </ng-container>
+            </ng-container>
+        </ul>
+        <span class="col-2"></span><span class="col-4">Type your todo here :</span><input class="col-4" #task type="text" placeholder="Press Enter to add your todo to the list" (keydown.enter)="create(task)">
+    </div>
+</div>
